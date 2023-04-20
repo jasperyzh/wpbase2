@@ -57,6 +57,11 @@ function wpbase2_setup()
         'flex-width'  => true,
         'flex-height' => true,
     ]);
+
+    register_nav_menus([
+        'primary' => esc_html__('Primary', 'wpbase'),
+        'footer' => esc_html__('Footer', 'wpbase'),
+    ]);
 }
 add_action('after_setup_theme', 'wpbase2_setup');
 
@@ -118,3 +123,11 @@ function enqueue_bootstrap_icons()
     wp_enqueue_style('bootstrap-icons', get_template_directory_uri() . '/lib/bootstrap-icons-1.10.4/font/bootstrap-icons.css', [], "1.10.4", "all");
 }
 add_action("wp_enqueue_scripts", "enqueue_bootstrap_icons");
+
+
+/**
+ * wpbase_inc
+ */
+require get_template_directory() . '/inc/wp-reset_wp.php';
+require get_template_directory() . '/inc/wp-disable_comment.php';
+require get_template_directory() . '/inc/wp-nav_menu.php';

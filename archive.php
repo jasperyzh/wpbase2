@@ -8,6 +8,9 @@
  */
 
 get_header();
+
+do_action('wpbase_do_before_content');
+
 ?>
 
 	<main id="primary" class="site-main">
@@ -47,5 +50,9 @@ get_header();
 	</main><!-- #main -->
 
 <?php
+
+do_action('wpbase_do_after_content');
+
 get_sidebar();
+
 get_footer();
