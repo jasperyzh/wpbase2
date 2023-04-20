@@ -1,0 +1,9 @@
+:root {
+    --spacing: 1rem;
+    --rounded: 5px;
+    --bg-color: goldenrod;
+}
+
+.custom-block-bootstrap5 {
+    background-color: var(--bg-color);
+}

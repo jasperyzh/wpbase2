@@ -1,0 +1,12 @@
+{
+  "name": "wpbase2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "wp-scripts start src/block-backend.js src/block-frontend.js",
+    "build": "wp-scripts build src/block-backend.js src/block-frontend.js"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^26.2.0"
+  }
+}

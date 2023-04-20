@@ -1,0 +1,23 @@
+:root {
+    --spacing: 1rem;
+    --rounded: 5px;
+}
+
+.wp-block-custom-block-bootstrap5 {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: var(--spacing);
+    border-radius: var(--rounded);
+
+    .item--correct {
+        color: gold;
+        cursor: pointer;
+    }
+    .item--delete {
+        color: red;
+
+        &:hover {
+            color: maroon;
+        }
+    }
+}
