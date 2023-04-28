@@ -219,6 +219,105 @@ function EditComponent(props) {
 
 /***/ }),
 
+/***/ "./src/_FetchPosts.js":
+/*!****************************!*\
+  !*** ./src/_FetchPosts.js ***!
+  \****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+// import { TextControl, Flex, FlexBlock, FlexItem, Button, Icon } from "@wordpress/components";
+
+
+const BLOCK_NAME = "custom-block/fetchposts";
+const all_attributes = {
+  // posts: { type: "string" },
+  // className: { type: "string" },
+  // setAttributes: { type: "string" },
+};
+wp.blocks.registerBlockType(BLOCK_NAME, {
+  title: "Fetch Posts",
+  icon: "smiley",
+  category: "common",
+  attributes: all_attributes,
+  edit: EditComponent,
+  save: function () {
+    return null;
+  }
+});
+/* 
+function EditComponent(props) {
+
+  const {
+    posts
+  } = props.attributes;
+
+  return (
+    <div className={props.className}>
+      <p>helloworld</p>
+
+      <select>
+        <option></option>
+        <option></option>
+      </select>
+
+      <textarea></textarea>
+    </div>
+  )
+} */
+
+function EditComponent(props) {
+  const [getPosts, setPosts] = react__WEBPACK_IMPORTED_MODULE_1___default().useState([]);
+  const [selectedPostId, setSelectedPostId] = react__WEBPACK_IMPORTED_MODULE_1___default().useState('');
+  const [selectedPostData, setSelectedPostData] = react__WEBPACK_IMPORTED_MODULE_1___default().useState({});
+  const {
+    attributes: {
+      posts
+    },
+    className,
+    setAttributes
+  } = props;
+  react__WEBPACK_IMPORTED_MODULE_1___default().useEffect(() => {
+    // Fetch posts
+    fetch('/wp-json/wp/v2/posts').then(response => response.json()).then(posts => {
+      setPosts(posts);
+      setSelectedPostId(posts[0].id);
+    }).catch(error => console.error(error));
+  }, []);
+
+  /* React.useEffect(() => {
+    // Fetch custom fields for the selected post
+    fetch(`/wp-json/wp/v2/posts/${selectedPostId}?_fields=custom_fields`)
+      .then(response => response.json())
+      .then(postData => {
+        setSelectedPostData(postData.custom_fields);
+      })
+      .catch(error => console.error(error));
+  }, [selectedPostId]);
+    const handlePostChange = (event) => {
+    setSelectedPostId(event.target.value);
+  };
+    const handleSave = () => {
+    const selectedPost = posts.find(post => post.id === parseInt(selectedPostId));
+    const data = {
+      title: selectedPost.title.rendered,
+      customFields: selectedPostData,
+    };
+    setAttributes({ posts: JSON.stringify(data) });
+  }; */
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: className
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "helloworld"));
+}
+
+/***/ }),
+
 /***/ "./src/block-backend.scss":
 /*!********************************!*\
   !*** ./src/block-backend.scss ***!
@@ -228,6 +327,16 @@ function EditComponent(props) {
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ (function(module) {
+
+module.exports = window["React"];
 
 /***/ }),
 
@@ -328,6 +437,8 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_backend_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./block-backend.scss */ "./src/block-backend.scss");
 /* harmony import */ var _BootstrapCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_BootstrapCard */ "./src/_BootstrapCard.js");
+/* harmony import */ var _FetchPosts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_FetchPosts */ "./src/_FetchPosts.js");
+
 
 
 }();
