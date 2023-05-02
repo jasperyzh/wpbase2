@@ -1,4 +1,8 @@
 <?php
+// must exist
+$args['tag'] = (isset($args['tag'])) ? $args['tag'] : "";
+$args['footer'] = (isset($args['footer'])) ? $args['footer'] : "";
+
 list($tag, $classes, $title, $excerpt, $img_url, $btn_label, $href, $post_meta, $footer) = [
     $args['tag'],
     $args['classes'],
@@ -12,7 +16,7 @@ list($tag, $classes, $title, $excerpt, $img_url, $btn_label, $href, $post_meta, 
 ];
 ?>
 <div class="card <?= $classes['card'] ?>">
-    <div class="card-img <?= $classes["card-img"] ?>">
+    <div class="card-img <?= isset($classes["card-img"]) ? $classes["card-img"] : "" ?>">
         <img src="<?= $img_url ?>" class="card-img-top" alt="<?= $title ?>">
     </div>
     <div class="card-body">
@@ -33,7 +37,7 @@ list($tag, $classes, $title, $excerpt, $img_url, $btn_label, $href, $post_meta, 
         }
         ?>
     </div>
-    <div class="card-footer <?= $classes["card-footer"] ?>">
+    <div class="card-footer <?= isset($classes["card-footer"]) ? $classes["card-footer"] : "" ?>">
 
         <?= ($footer) ? $footer : "" ?>
 

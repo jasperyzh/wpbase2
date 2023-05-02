@@ -26,6 +26,7 @@ if (!defined('_S_VERSION')) {
  */
 function wpbase2_setup()
 {
+
     add_theme_support('title-tag');
 
     add_theme_support('post-thumbnails');
@@ -65,22 +66,19 @@ function wpbase2_setup()
 }
 add_action('after_setup_theme', 'wpbase2_setup');
 
-
-function wpbase2_widgets_init()
+function wpbase2_widgets_sidebar_1()
 {
-    register_sidebar(
-        array(
-            'name'          => esc_html__('Sidebar', 'wpbase2'),
-            'id'            => 'sidebar-1',
-            'description'   => esc_html__('Add widgets here.', 'wpbase2'),
-            'before_widget' => '<section id="%1$s" class="widget %2$s">',
-            'after_widget'  => '</section>',
-            'before_title'  => '<h2 class="widget-title">',
-            'after_title'   => '</h2>',
-        )
-    );
+    register_sidebar([
+        'name'          => esc_html__('Sidebar', 'wpbase2'),
+        'id'            => 'sidebar-1',
+        'description'   => esc_html__('Add widgets here.', 'wpbase2'),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ]);
 }
-add_action('widgets_init', 'wpbase2_widgets_init');
+add_action('widgets_init', 'wpbase2_widgets_sidebar_1');
 
 /**
  * Implement the Custom Header feature.
@@ -124,34 +122,85 @@ function enqueue_bootstrap_icons()
 }
 add_action("wp_enqueue_scripts", "enqueue_bootstrap_icons");
 
+// header_php
 add_action("wpbase_do_header", "wpbase_default_header");
 
+// footer_php
 add_action("wpbase_do_footer", "wpbase_default_footer");
 
-add_action("wpbase_do_entry_header", "wpbase_default_entry_header");
-function wpbase_default_entry_header()
-{
-?>
-    <header class="entry-header">
-        <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-    </header><!-- .entry-header -->
-<?php
-}
+// template_tag.php
+add_action("wpbase_do_entry_header", "wpbase2_post_thumbnail");
 
-add_action("wpbase_do_sidebar", "wpbase_default_sidebar");
+// 404.php
+add_action("wpbase_do_404_content", "wpbase_404_content");
+add_action("wpbase_do_404_content", "wpbase_404_content_widget");
+
+
+function wpbase_single_content_meta()
+{
+    the_post_navigation(
+        array(
+            'prev_text' => '<span class="nav-subtitle">' . esc_html__('Previous:', 'wpbase2') . '</span> <span class="nav-title">%title</span>',
+            'next_text' => '<span class="nav-subtitle">' . esc_html__('Next:', 'wpbase2') . '</span> <span class="nav-title">%title</span>',
+        )
+    );
+
+    // If comments are open or we have at least one comment, load up the comment template.
+    if (comments_open() || get_comments_number()) :
+        comments_template();
+    endif;
+}
+add_action("wpbase_do_content", "wpbase_single_content_meta", 12);
+
 function wpbase_default_sidebar()
 {
-?>
-    <aside id="secondary" class="widget-area">
-        <?php dynamic_sidebar('sidebar-1'); ?>
-    </aside><!-- #secondary -->
-<?php
+    get_sidebar();
 }
+add_action("wpbase_do_sidebar", "wpbase_default_sidebar");
+
+
+function wpbase_default_entry_header()
+{
+    // the_title('<h1 class="entry-title">', '</h1>');
+    if (is_singular()) :
+        the_title('<h1 class="entry-title">', '</h1>');
+    else :
+        the_title('<h2 class="entry-title"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h2>');
+    endif;
+}
+add_action("wpbase_do_entry_header", "wpbase_default_entry_header", 8);
+
+
+function wpbase_default_entry_meta()
+{
+    if ('post' === get_post_type()) :
+?>
+        <div class="entry-meta">
+            <?php
+            wpbase2_posted_on();
+            wpbase2_posted_by();
+            ?>
+        </div><!-- .entry-meta -->
+<?php
+    endif;
+}
+add_action("wpbase_do_entry_header", "wpbase_default_entry_meta");
+
+
+
+function add_search_form_class($form)
+{
+    $form = str_replace('class="search-form"', 'class="search-form my-class"', $form);
+    return $form;
+}
+add_filter('get_search_form', 'add_search_form_class');
 
 /**
  * wpbase_inc
  */
 require get_template_directory() . '/inc/wp-reset_wp.php';
+require get_template_directory() . '/inc/wp-reset_image_sizes.php';
 require get_template_directory() . '/inc/wp-disable_comment.php';
 require get_template_directory() . '/inc/wp-nav_menu.php';
 
+?>

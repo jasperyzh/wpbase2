@@ -8,6 +8,20 @@
  * @package wpbase2
  */
 
+// add_action("wpbase_do_entry_header", "wpbase2_post_thumbnail", 12);
+
+remove_action("wpbase_do_entry_header", "wpbase_default_entry_header", 8);
+remove_action("wpbase_do_entry_header", "wpbase_default_entry_meta");
+remove_action("wpbase_do_entry_footer", "wpbase2_entry_footer", 8);
+
+
+function content_search_entry_header()
+{
+	the_title(sprintf('<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url(get_permalink())), '</a></h2>');
+}
+add_action("wpbase_do_entry_header", "content_search_entry_header");
+
+
 get_header();
 
 do_action('wpbase_do_before_content');

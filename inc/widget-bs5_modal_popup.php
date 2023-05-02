@@ -8,24 +8,33 @@ function wpbase_bs5_modal_popup()
     if (!is_active_sidebar('popup-modal') || !is_front_page()) {
         return;
     }
+
+    $cookie_name = 'popup-modal-cookie';
+    $cookie_value = 'true';
+    $expiration_time = time() + 86400; // 24 hours
+
+    if (!isset($_COOKIE[$cookie_name])) :
+        // set the cookie if it doesn't exist
+        setcookie($cookie_name, $cookie_value, $expiration_time, '/');
 ?>
-    <div class="modal fade" id="popup-modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <h5 class="modal-title" id="popup-modal__label">Modal title</h5> -->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php dynamic_sidebar('popup-modal'); ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="modal fade" id="popup-modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <h5 class="modal-title" id="popup-modal__label">Modal title</h5> -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php dynamic_sidebar('popup-modal'); ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 <?php
+    endif;
 }
 add_action('wp_footer', 'wpbase_bs5_modal_popup');
 

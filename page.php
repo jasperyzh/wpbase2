@@ -35,11 +35,12 @@ do_action('wpbase_do_before_content');
 	endwhile; // End of the loop.
 	?>
 
+	<?php do_action('wpbase_do_sidebar'); ?>
+
 </main><!-- #main -->
 
 <?php
 do_action('wpbase_do_after_content');
 
-get_sidebar();
 
 get_footer();
