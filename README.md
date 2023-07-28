@@ -33,5 +33,10 @@ npm run build
 ---
 ## log
 
+### 0.2.230707
+- implement bootstrap example templates
+- add default wp-menu for header, footer, social
+
+
 ### v0.1.0
 - setup default theme

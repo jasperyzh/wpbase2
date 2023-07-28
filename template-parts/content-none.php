@@ -8,6 +8,10 @@
  * @package wpbase2
  */
 
+ /**
+  check this out, search when nothing found content
+  */
+
 ?>
 
 <section class="no-results not-found">

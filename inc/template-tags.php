@@ -125,33 +125,46 @@ if (!function_exists('wpbase2_post_thumbnail')) :
 	 * Wraps the post thumbnail in an anchor element on index views, or a div
 	 * element when on single views.
 	 */
-	function wpbase2_post_thumbnail()
+	function wpbase2_post_thumbnail($placeholder_img = NULL, $classes = NULL)
 	{
-		if (post_password_required() || is_attachment() || !has_post_thumbnail()) {
+		if ($placeholder_img === NULL) {
+			$placeholder_img = DEFAULT_FEATURED_IMAGE;
+		}
+
+		if (post_password_required() || is_attachment()) {
 			return;
 		}
 
-		if (is_singular()) :
-?>
+		if (is_singular()) : ?>
 
-			<div class="post-thumbnail">
-				<?php the_post_thumbnail(); ?>
+			<div class="post-thumbnail <?= $classes ?>">
+				<?php
+				if (has_post_thumbnail()) {
+					the_post_thumbnail();
+				} else {
+					echo $placeholder_img;
+				}
+				?>
 			</div><!-- .post-thumbnail -->
 
 		<?php else : ?>
 
 			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 				<?php
-				the_post_thumbnail(
-					'post-thumbnail',
-					array(
-						'alt' => the_title_attribute(
-							array(
-								'echo' => false,
-							)
-						),
-					)
-				);
+				if (has_post_thumbnail()) {
+					the_post_thumbnail(
+						'post-thumbnail',
+						[
+							'alt' => the_title_attribute(
+								[
+									'echo' => false,
+								]
+							),
+						]
+					);
+				} else {
+					echo $placeholder_img;
+				}
 				?>
 			</a>
 
