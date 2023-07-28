@@ -1,0 +1,29 @@
+name: Deploy to staging via FTP
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ftp.fishermen-analytics.com
+          username: fanalytics_live@fishermen-analytics.com
+          password: ${{ secrets.FANALYTICS_FTP_PASSWORD }}
+          server-dir: /public_html/stagingpetrosains.fishermen-analytics.com/wp-content/themes/wpbase2/
+          local-dir: ./
