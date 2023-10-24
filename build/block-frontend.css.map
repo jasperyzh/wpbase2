@@ -1,1 +1,0 @@
-{"version":3,"file":"block-frontend.css","mappings":";;;AAAA;EACI;EACA;EACA;AACJ;;AAEA;EACI;AACJ,C","sources":["webpack://wpbase2/./src/block-frontend.scss"],"sourcesContent":[":root {\r\n    --spacing: 1rem;\r\n    --rounded: 5px;\r\n    --bg-color: goldenrod;\r\n}\r\n\r\n.custom-block-bootstrap5 {\r\n    background-color: var(--bg-color);\r\n}"],"names":[],"sourceRoot":""}

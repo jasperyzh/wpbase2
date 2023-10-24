@@ -1,15 +1,15 @@
 <?php
 
 /**
- * WPBASE2 FUNCTIONS.PHP
- * @version 1.2.0
+ * @version 0.9.0
  */
+
 // Exit if accessed directly
 if (!defined('ABSPATH'))
     exit;
 
 /**
- * wpbase2 functions and definitions
+ * functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -33,7 +33,6 @@ define('DEFAULT_FEATURED_IMAGE', '<img src="https://images.pexels.com/photos/147
  */
 function wpbase2_setup()
 {
-
     add_theme_support('title-tag');
 
     add_theme_support('post-thumbnails');
@@ -98,14 +97,6 @@ function wpbase2_setup()
     require get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
 
     /**
-     * custom_blocks
-     */
-    // include "inc/inc.blocks.php";
-    // if (class_exists('CustomBlockBootstrap')) {
-    //     $customBlockBootstrap = new CustomBlockBootstrap();
-    // }
-
-    /**
      * wpbase_inc
      */
     require get_template_directory() . '/inc/wp-reset_wp.php';
@@ -139,13 +130,11 @@ add_action('widgets_init', 'wpbase2_widgets_setup');
  */
 function wpbase2_enqueue()
 {
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/lib/bootstrap-5.3.0/css/bootstrap.min.css', [], "5.3.0", "all");
+    // wp_enqueue_style('bootstrap', get_template_directory_uri() . '/lib/bootstrap-5.3.0/css/bootstrap.min.css', [], "5.3.0", "all");
 
-    wp_enqueue_script('bootstrap', get_template_directory_uri() . '/lib/bootstrap-5.3.0//js/bootstrap.bundle.min.js', array('jquery'), "5.3.0");
+    // wp_enqueue_script('bootstrap', get_template_directory_uri() . '/lib/bootstrap-5.3.0//js/bootstrap.bundle.min.js', array('jquery'), "5.3.0");
 
     wp_enqueue_style('bootstrap-icons', get_template_directory_uri() . '/lib/bootstrap-icons-1.10.5/font/bootstrap-icons.css', [], "1.10.5", "all");
-
-    wp_enqueue_style('wpbase2', get_template_directory_uri() . '/style-wpbase2.css', [], _S_VERSION, "all");
 }
 add_action("wp_enqueue_scripts", "wpbase2_enqueue");
 
@@ -187,14 +176,14 @@ add_filter('get_search_form', 'bootstrap_search_form');
 function wpbase2_template_insertion()
 {
     // global template
-    add_action("wpbase_do_header", function () {
-        get_template_part("template-parts/bootstrap", "header");
-    });
-    add_action("wpbase_do_header", function () {
-        get_template_part("template-parts/bootstrap", "menu-secondary");
-    });
+    // add_action("wpbase_do_header", function () {
+    //     get_template_part("template-parts/bootstrap", "header");
+    // });
+    // add_action("wpbase_do_header", function () {
+    //     get_template_part("template-parts/bootstrap", "menu-secondary");
+    // });
 
-    add_action('wpbase_do_content', function () {
+    /* add_action('wpbase_do_content', function () {
 ?>
         <div class="container">
             <?php add_breadcrumb() ?>
@@ -203,7 +192,7 @@ function wpbase2_template_insertion()
         <?php
 
         the_content();
-    });
+    }); */
 
     add_action("wpbase_do_entry_header", "wpbase2_post_thumbnail");
 
@@ -229,7 +218,6 @@ function wpbase2_template_insertion()
                     </div>
 
                     <div class="col-md-4">
-                        <!-- add_action("wpbase_do_content", "get_sidebar", 12); -->
                         <?php get_template_part("template-parts/bootstrap", "single-sidebar") ?>
                     </div>
                 </div>
@@ -246,7 +234,6 @@ function wpbase2_template_insertion()
                     <?php
                     get_template_part('template-parts/content', 'page');
 
-                    // If comments are open or we have at least one comment, load up the comment template.
                     if (comments_open() || get_comments_number()) :
                         comments_template();
                     endif;
@@ -256,7 +243,7 @@ function wpbase2_template_insertion()
             endwhile; // End of the loop.
         });
     }
-    if (is_archive()) {
+    /* if (is_archive()) {
 
         add_action("wpbase_do_content", function () {
             ?>
@@ -265,8 +252,8 @@ function wpbase2_template_insertion()
             </div>
         <?php
         });
-    }
-    if (is_search()) {
+    } */
+    /* if (is_search()) {
         // add_action("wpbase_do_entry_header", "wpbase2_post_thumbnail", 12);
         remove_action("wpbase_do_entry_header", "wpbase_default_entry_header", 8);
         remove_action("wpbase_do_entry_header", "wpbase_default_entry_meta");
@@ -284,8 +271,8 @@ function wpbase2_template_insertion()
             </div>
         <?php
         });
-    }
-    if (is_404()) {
+    } */
+    /* if (is_404()) {
         add_action("wpbase_do_content", function () {
         ?>
             <div class="container">
@@ -293,9 +280,9 @@ function wpbase2_template_insertion()
             </div>
         <?php
         });
-    }
+    } */
 
-    if (is_front_page() && is_home()) {
+    /* if (is_front_page() && is_home()) {
         // Default homepage (i.e., displays the latest posts)
         // add_action("wpbase_do_content", "bootstrap_example_frontpage");
 
@@ -369,11 +356,11 @@ function wpbase2_template_insertion()
                 echo '<p>Sorry, no content available.</p>';
             endif;
         });
-    }
+    } */
 
 
-    // template components
-    if (!is_front_page() && is_home() || is_single() || !is_front_page() && is_page() || is_archive()) {
+    // page_banner
+    /* if (!is_front_page() && is_home() || is_single() || !is_front_page() && is_page() || is_archive()) {
         add_action("wpbase_do_content", function () {
             ?>
             <div class="container-fluid mb-4 px-0">
@@ -381,7 +368,7 @@ function wpbase2_template_insertion()
             </div>
 <?php
         }, 2);
-    }
+    } */
 }
 add_action("template_redirect", "wpbase2_template_insertion");
 
@@ -390,16 +377,35 @@ add_action("template_redirect", "wpbase2_template_insertion");
 /**
  * add yoast_seo breadcrumbs
 	move to wpbase2/inc
-
 	check on this: https://yoast.com/help/add-theme-support-for-yoast-seo-breadcrumbs/
 	add_theme_support( 'yoast-seo-breadcrumbs' );
-
  */
 function add_breadcrumb()
 {
     if (function_exists('yoast_breadcrumb')) {
         if (!is_front_page() && (is_single() || is_page() || is_archive())) {
-            yoast_breadcrumb('<p id="breadcrumbs" class="my-4">', '</p>');
+            yoast_breadcrumb('<p id="breadcrumbs" class="py-4">', '</p>');
         }
     }
 }
+
+
+// wpbase2_petrosains setup_vite
+
+// add_action('after_setup_theme', 'petrosains_setup', 12);
+
+// remove_action("wp_enqueue_scripts", "wpbase2_enqueue", 12);
+
+// vite
+// wp_config_php: IS_VITE_DEVELOPMENT
+define('VITE_SERVER', 'http://localhost:3030');
+define('VITE_ENTRY_POINT', '/src/main.js');
+require get_template_directory() . '/inc/inc.vite.php';
+
+
+/**
+ * functions_petrosains
+ */
+// define("PETROSAINS_ASSETS_PATH", get_stylesheet_directory_uri() . "/assets");
+// define("PETROSAINS_DEFAULT_THUMBNAIL", PETROSAINS_ASSETS_PATH . '/petrosains-thumbnail-default.jpg');
+// define("PETROSAINS_DEFAULT_BANNER", PETROSAINS_ASSETS_PATH . '/petrosains-banner-default.jpg');

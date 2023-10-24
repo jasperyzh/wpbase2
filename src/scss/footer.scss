@@ -1,0 +1,23 @@
+.footer__social {
+    a {
+        font-size: 2rem;
+        margin: 1rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        aspect-ratio: 1/1;
+        transition: scale 0.3s ease;
+    }
+    a:hover {
+        scale: 1.2;
+    }
+    i.bi {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        scale: 1;
+    }
+}

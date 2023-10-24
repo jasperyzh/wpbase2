@@ -1,0 +1,135 @@
+.hero {
+    aspect-ratio: 1/1;
+
+    @media screen and (min-width: 992px) {
+        aspect-ratio: 2/1;
+    }
+}
+.hero__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+
+    object-fit: cover;
+    object-position: bottom left;
+    width: 100%;
+    height: 100%;
+}
+
+// exhibitions
+.grid-container {
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+
+    @media screen and (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas:
+            "a b c"
+            "d title title"
+            "g h i";
+    }
+
+    @media screen and (min-width: 992px) {
+        grid-template-areas:
+            "a b c"
+            "d title f"
+            "g h i";
+    }
+}
+.content-block-title {
+    align-self: center;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+        grid-area: title;
+    }
+}
+.content-block:nth-child(2),
+.content-block:nth-child(3) {
+    align-self: end;
+}
+.content-block:nth-child(4) {
+    justify-self: start;
+    align-self: end;
+}
+.content-block:nth-child(5) {
+    justify-self: end;
+    align-self: center;
+}
+.content-block:nth-child(6) {
+    justify-self: start;
+}
+.content-block:nth-child(7) {
+    justify-self: end;
+}
+.content-block:nth-child(8) {
+    justify-self: center;
+}
+
+.content-block a {
+    position: absolute;
+    z-index: 10;
+    bottom: 2rem;
+    left: 1rem;
+    filter: drop-shadow(2px 1px 2px rgba(0 0 0 / 0.4));
+    color: #fff;
+}
+.content-block a h2 {
+    color: #fff;
+}
+
+.content-block {
+    overflow: hidden;
+    position: relative;
+}
+.content-block img {
+    scale: 1;
+    transition: scale 0.3s ease;
+}
+.content-block:hover img {
+    scale: 1.15;
+}
+
+// swiper
+.swiper.mySwiper {
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 60vw;
+        /* height: 300px; */
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+}
+
+// ticket
+
+#tickets {
+    background: #00a99d !important;
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        background-color: var(--bs-secondary);
+    }
+    .nav-pills .nav-link,
+    .nav-pills .show > .nav-link {
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+
+    .table > :not(caption) > * > * {
+        background-color: transparent;
+        color: #fff;
+    }
+}

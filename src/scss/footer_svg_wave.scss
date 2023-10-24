@@ -1,0 +1,20 @@
+.footer__svg.custom-shape-divider-bottom-1696931699 {
+    position: absolute;
+    /* bottom: 0; */
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.footer__svg.custom-shape-divider-bottom-1696931699 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 73px;
+}
+
+.footer__svg.custom-shape-divider-bottom-1696931699 .shape-fill {
+    fill: var(--bs-primary);
+}

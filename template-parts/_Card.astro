@@ -1,0 +1,46 @@
+---
+const {
+  title = "TIME FOR MINIMALISM",
+  description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, nostrum, cumque culpa provident aliquam commodi assumenda laudantium magnam illo nostrum.",
+  link = "#",
+  btn_label = "Read More",
+  date = "Jul 10",
+  author = "Admin",
+  imgsrc = "/images/blog/stage1.jpg",
+} = Astro.props;
+---
+
+<div class="col">
+  <div class="card card-default text-bg-secondary text-bg-purple shadow h-100 border-0">
+    <a href={link}>
+      <img
+        src={imgsrc}
+        width="512"
+        height="512"
+        alt=""
+        class="object-fit-cover"
+        style="aspect-ratio: 4/3"
+      />
+    </a>
+    <div class="card-body">
+      <h3 class="card-title">
+        <a href="#" class="text-white">{title}</a>
+      </h3>
+      <p class="card-text">
+        {description}
+      </p>
+      <a href="#" class="stretched-link"></a>
+    </div>
+    <!-- <footer class="card-footer">
+      <a href="#" class="btn btn-outline-light btn-sm">Read More</a>
+    </footer> -->
+  </div>
+</div>
+<style>
+  .text-bg-secondary.text-bg-purple {
+    background-color: #763F98 !important;
+  }
+  .text-bg-purple .card-text {
+    color: #fff;
+  }
+</style>
