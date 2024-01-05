@@ -1,4 +1,9 @@
 .footer__social {
+
+    @media screen and (max-width: 991px) {
+        margin-block: 5rem;
+    }
+
     a {
         font-size: 2rem;
         margin: 1rem;
@@ -20,4 +25,8 @@
 
         scale: 1;
     }
+}
+
+footer .footer__svg  {
+    margin-bottom: -2px;
 }

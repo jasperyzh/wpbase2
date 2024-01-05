@@ -16,8 +16,8 @@ define('JS_LOAD_IN_FOOTER', true);
 /**
  * 
  * // default server address, port and entry point can be customized in vite.config.json
- define('VITE_SERVER', 'http://localhost:3030');
- define('VITE_ENTRY_POINT', '/src/main.js');
+ * define('VITE_SERVER', 'http://localhost:3030');
+ * define('VITE_ENTRY_POINT', '/src/main.js');
  */
 
 // enqueue hook

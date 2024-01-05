@@ -63,7 +63,9 @@ export default defineConfig({
   },
 
   server: {
-
+    proxy: {
+      '/assets': 'http://localhost/assets'
+    },
     // required to load scripts from custom host
     cors: true,
 
@@ -71,8 +73,9 @@ export default defineConfig({
     // change freely, but update in your functions.php to match the same port
     strictPort: true,
 
-    host: 'petrosains.localhost',
-    port: 3030,
+    // host: 'localhost',
+    host: '0.0.0.0',
+    port: 3000,
 
     // serve over http
     https: false,
@@ -91,7 +94,8 @@ export default defineConfig({
     //},
 
     hmr: {
-      host: 'petrosains.localhost',
+      // host: 'localhost',
+      host: '0.0.0.0',
       // host: 'localhost',
       //port: 443
     },

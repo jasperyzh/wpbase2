@@ -1,7 +1,10 @@
 .blog-post {
     color: #595959;
 }
-
-.blog-post img {
+.blog-post > .wp-block-image > img {
     margin: 1rem auto;
+}
+
+.wp-block-image {
+    margin-block: 1rem;
 }
