@@ -102,24 +102,33 @@
 								));
 
 								// Custom function for opening_time widget area
-								function widget_area_opening_time()
-								{
-									ob_start();
-									dynamic_sidebar('opening-time');
-									return ob_get_clean();
+								// function widget_area_opening_time()
+								// {
+								// 	ob_start();
+								// 	dynamic_sidebar('opening-time');
+								// 	return ob_get_clean();
+								// }
+
+								// echo do_shortcode('	');
+
+								// wp_nav_menu(array(
+								// 	'theme_location'  => 'primary3',
+								// 	'menu_id'        => 'primary3',
+								// 	'menu_class'      => 'navbar-nav',
+								// 	'container' => false,
+								// 	'fallback_cb' => false,
+								// 	'items_wrap'      => '<ul id="primary_3" class="%2$s">
+								// 	<span class="navbar-text me-3">' . displayBusinessHours() . '</span>
+								// 	%3$s</ul>',
+								// 	'depth' => 2,
+								// 	'walker' => new bootstrap_5_wp_nav_menu_walker(),
+								// ));
+
+								// add dynamic sidebar widget area id:primary-menu-cta-section
+								if (is_active_sidebar('primary-menu-cta-section')) {
+									dynamic_sidebar('primary-menu-cta-section');
 								}
-								wp_nav_menu(array(
-									'theme_location'  => 'primary3',
-									'menu_id'        => 'primary3',
-									'menu_class'      => 'navbar-nav',
-									'container' => false,
-									'fallback_cb' => false,
-									'items_wrap'      => '<ul id="primary_3" class="%2$s">
-									<span class="navbar-text me-3">' . displayBusinessHours() . '</span>
-									%3$s</ul>',
-									'depth' => 2,
-									'walker' => new bootstrap_5_wp_nav_menu_walker(),
-								));
+
 								/* wp_nav_menu(array(
 									'theme_location'  => 'primary3',
 									'menu_id'        => 'primary3',

@@ -10,6 +10,19 @@
 	<div class="container">
 		<div class="col mx-auto text-center">
 			<h2>Stay Connected</h2>
+			<?php
+			wp_nav_menu(array(
+				'theme_location'  => 'socialmedia',
+				'menu_id'        => 'socialmedia',
+				'menu_class'      => 'nav',
+				'container' => false,
+				'fallback_cb' => false,
+				'items_wrap'      => '<ul id="footer__socialmedia" class="%2$s">%3$s</ul>',
+				'depth' => 2,
+				'walker' => new bootstrap_5_wp_nav_menu_walker()
+			));
+			?>
+
 			<div class="d-flex tw-gap-5 justify-content-center">
 				<a class="btn btn-primary square-button rounded-circle" target="_blank" href="https://www.tiktok.com/@petrosains">
 					<i class="bi bi-tiktok text-white"></i>
@@ -47,7 +60,7 @@
 						<img class="logo mx-auto mx-md-0" src="/assets/logo/logo-petrosains-full.svg" alt="Logo of Petrosains" width="180" />
 					</a>
 					<p>
-						Petrosains, The Discovery Centre®
+						Petrosains, The Discovery Centre ®
 						<br />Level 4, Suria KLCC
 						<br />PETRONAS Twin Towers
 						<br />Kuala Lumpur City Centre
@@ -121,24 +134,29 @@
 			</div>
 		</div>
 		<hr />
-		<div class="container ps-lg-0">
-			<?php
-			wp_nav_menu(array(
-				'theme_location'  => 'footer3',
-				'menu_id'        => 'footer3',
-				'menu_class'      => 'nav justify-content-center justify-content-md-start',
-				'container' => false,
-				'fallback_cb' => false,
-				'items_wrap'      => '<ul id="footer_3" class="%2$s">%3$s
-				<li class="nav-item">
-					<a class="nav-link disabled" href="#">
-						<p>&copy; Copyright 2023 Petrosains Sdn. Bhd. <span class="d-inline-block">(458560-H)</span></p>
-					</a>
-				</li></ul>',
-				'depth' => 2,
-				'walker' => new bootstrap_5_wp_nav_menu_walker()
-			));
-			?>
+		<div class="container d-flex flex-wrap gap-4 justify-content-center justify-content-lg-start">
+				<?php
+				// wp_nav_menu(array(
+				// 	'theme_location'  => 'footer3',
+				// 	'menu_id'        => 'footer3',
+				// 	'menu_class'      => 'nav justify-content-center justify-content-md-start',
+				// 	'container' => false,
+				// 	'fallback_cb' => false,
+				// 	'items_wrap'      => '<ul id="footer_3" class="%2$s">%3$s
+				// 	<li class="nav-item">
+				// 		<a class="nav-link disabled" href="#">
+				// 			<p>&copy; Copyright 2023 Petrosains Sdn. Bhd. <span class="d-inline-block">(458560-H)</span></p>
+				// 		</a>
+				// 	</li></ul>',
+				// 	'depth' => 2,
+				// 	'walker' => new bootstrap_5_wp_nav_menu_walker()
+				// ));
+
+				// insert widget area: footer-copy-section
+				if (is_active_sidebar('footer-copy-section')) {
+					dynamic_sidebar('footer-copy-section');
+				}
+				?>
 		</div>
 	</div>
 </footer>

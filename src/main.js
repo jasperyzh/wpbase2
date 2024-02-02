@@ -85,6 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     videoModal.addEventListener('hide.bs.modal', function () {
-        videoIframe.src = '';
+        videoIframe.src = videoIframe.src;
     });
 });

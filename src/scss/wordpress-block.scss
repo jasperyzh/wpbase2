@@ -1,0 +1,9 @@
+.wp-block-group {
+  &.is-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &.is-layout-flex {
+    display: flex;
+  }
+}

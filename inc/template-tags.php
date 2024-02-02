@@ -128,7 +128,7 @@ if (!function_exists('wpbase2_post_thumbnail')) :
 	function wpbase2_post_thumbnail($placeholder_img = NULL, $classes = NULL)
 	{
 		if ($placeholder_img === NULL) {
-			$placeholder_img = DEFAULT_FEATURED_IMAGE;
+			$placeholder_img = '<img src="https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1" class="object-fit-cover w-100" width="400" height="300">';
 		}
 
 		if (post_password_required() || is_attachment()) {
